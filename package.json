@@ -1,0 +1,24 @@
+{
+  "name": "cordova-plugin-pdf-viewer",
+  "version": "1.0.0",
+  "description": "PDF Document viewer cordova plugin ",
+  "license": "MIT",
+  "author": "hanfei",
+  "cordova": {
+    "id": "cordova-plugin-pdf-viewer",
+    "platforms": [
+      "android"
+    ]
+  },
+  "keywords": [ 
+    "pdf"
+  ],
+  "engines": {
+    "cordovaDependencies": {
+      "1.0.0": {
+        "cordova": ">=3.7.0",
+        "cordova-windows": ">=4.4.0"
+      }
+    }
+  }
+}

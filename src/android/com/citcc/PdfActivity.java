@@ -1,0 +1,44 @@
+package com.citcc.PdfViewPlugin.PdfViewer;
+
+import android.app.Activity;
+import android.content.Intent;
+import android.net.Uri;
+import android.os.Bundle;
+
+import com.github.barteksc.pdfviewer.PDFView;
+
+/**
+ * Created by Administrator on 2017/6/8 0008.
+ */
+
+public class PdfActivity extends Activity {
+
+
+    private static final String ASSETS = "file:///android_asset/";
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(getApplication().getResources().getIdentifier("activity_pdf", "layout", getApplication().getPackageName()));
+        PDFView pdfView = (PDFView) findViewById(getApplication().getResources().getIdentifier("pdfView", "id", getApplication().getPackageName()));
+        try {
+            Intent intent = getIntent();
+            String fileUrl = intent.getStringExtra("FileUrl");
+            int fileUriType = intent.getIntExtra("UrlType",0);
+            if (fileUriType==0) {
+                pdfView.fromAsset(fileUrl).load();
+            } else {
+                Uri uri = Uri.parse(fileUrl);
+                pdfView.fromUri(uri).load();
+            }
+        } catch (Exception ex) {
+            Intent i = new Intent();
+            i.putExtra("Error", ex.getMessage());
+
+            setResult(100, i);
+            this.finish();
+        }
+
+
+    }
+}
